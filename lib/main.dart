@@ -48,6 +48,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  static const double _searchRadiusMeters = 3000.0;
   LatLng _currentLocation = const LatLng(51.5074, -0.1278); // Default: London
   List<Masjid> _masjids = [];
   bool _isLoading = false;
@@ -126,11 +127,11 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<void> _fetchNearbyMasjids() async {
     try {
-      // Overpass API query for masjids within 3000m
+      // Overpass API query for masjids within configured radius
       final query = '''
 [out:json];
 (
-  node["amenity"="place_of_worship"]["religion"="muslim"](around:3000,${_currentLocation.latitude},${_currentLocation.longitude});
+  node["amenity"="place_of_worship"]["religion"="muslim"](around:$_searchRadiusMeters,${_currentLocation.latitude},${_currentLocation.longitude});
 );
 out body;
 ''';
@@ -194,7 +195,7 @@ out body;
       final dateStr = DateFormat('dd-MM-yyyy').format(now);
       
       final url = Uri.parse(
-        'http://api.aladhan.com/v1/timings/$dateStr'
+        'https://api.aladhan.com/v1/timings/$dateStr'
         '?latitude=${_currentLocation.latitude}'
         '&longitude=${_currentLocation.longitude}'
         '&method=2',
