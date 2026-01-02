@@ -1,0 +1,2 @@
+Replace this file with the app logo image (e.g., app_icon.png).
+This placeholder is included to ensure the assets directory is tracked in version control.
