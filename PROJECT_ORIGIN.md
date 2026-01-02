@@ -31,4 +31,4 @@ The project is in its initial stages, with the foundational documentation being 
 
 ---
 
-*This document was created to answer the question: "what was the starting prompt for this project"*
+*This document was created to answer the question: "what was the starting prompt for this project?"*
