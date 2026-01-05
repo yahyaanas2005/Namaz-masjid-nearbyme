@@ -9,7 +9,7 @@ import prayerTimeReducer from './slices/prayerTimeSlice';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth', 'userPreferences'],
+  whitelist: ['auth'],
 };
 
 export const store = configureStore({

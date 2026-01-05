@@ -1,14 +1,15 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Mosque, PrayerTimeReport, Testimonial, MosqueCommitteeApproval } from '@models/Mosque';
 import { Location } from '@models/Mosque';
+import { CONFIG } from '@constants/index';
 
 class ApiService {
   private api: AxiosInstance;
 
   constructor() {
     this.api = axios.create({
-      baseURL: process.env.API_BASE_URL || 'http://localhost:3000/api',
-      timeout: parseInt(process.env.API_TIMEOUT || '30000', 10),
+      baseURL: CONFIG.API_BASE_URL,
+      timeout: 30000,
       headers: {
         'Content-Type': 'application/json',
       },

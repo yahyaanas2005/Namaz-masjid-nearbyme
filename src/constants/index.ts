@@ -71,3 +71,11 @@ export const STORAGE_KEYS = {
   CACHED_MOSQUES: '@cached_mosques',
   OFFLINE_DATA: '@offline_data',
 };
+
+// Configuration
+// TODO: Replace with your actual credentials before running
+export const CONFIG = {
+  GOOGLE_WEB_CLIENT_ID: 'YOUR_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com',
+  FIREBASE_API_KEY: 'YOUR_FIREBASE_API_KEY',
+  API_BASE_URL: __DEV__ ? 'http://localhost:3000/api' : 'https://your-api.com/api',
+};

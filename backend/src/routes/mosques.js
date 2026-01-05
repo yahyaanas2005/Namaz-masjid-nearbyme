@@ -51,29 +51,6 @@ router.get('/nearby', [
   }
 });
 
-// Get mosque by ID
-router.get('/:id', [
-  param('id').isMongoId(),
-], async (req, res) => {
-  try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const mosque = await Mosque.findById(req.params.id);
-    
-    if (!mosque) {
-      return res.status(404).json({ error: 'Mosque not found' });
-    }
-
-    res.json(mosque);
-  } catch (error) {
-    console.error('Error fetching mosque:', error);
-    res.status(500).json({ error: 'Failed to fetch mosque' });
-  }
-});
-
 // Search mosques
 router.get('/search', [
   query('q').notEmpty().trim(),
@@ -94,6 +71,29 @@ router.get('/search', [
   } catch (error) {
     console.error('Error searching mosques:', error);
     res.status(500).json({ error: 'Failed to search mosques' });
+  }
+});
+
+// Get mosque by ID
+router.get('/:id', [
+  param('id').isMongoId(),
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const mosque = await Mosque.findById(req.params.id);
+    
+    if (!mosque) {
+      return res.status(404).json({ error: 'Mosque not found' });
+    }
+
+    res.json(mosque);
+  } catch (error) {
+    console.error('Error fetching mosque:', error);
+    res.status(500).json({ error: 'Failed to fetch mosque' });
   }
 });
 

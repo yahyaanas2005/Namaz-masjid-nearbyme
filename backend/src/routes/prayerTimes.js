@@ -97,7 +97,7 @@ async function validatePrayerTime(mosqueId, prayerName) {
     await mosque.save();
 
     // Emit real-time update
-    const io = global.io;
+    const io = req.app.get('io');
     if (io) {
       io.to(`mosque:${mosqueId}`).emit('prayerTimeUpdate', {
         prayerName,

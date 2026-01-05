@@ -2,6 +2,7 @@ import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { User } from '@models/User';
+import { CONFIG } from '@constants/index';
 
 class AuthService {
   constructor() {
@@ -10,7 +11,7 @@ class AuthService {
 
   private configureGoogleSignIn() {
     GoogleSignin.configure({
-      webClientId: process.env.GOOGLE_WEB_CLIENT_ID,
+      webClientId: CONFIG.GOOGLE_WEB_CLIENT_ID,
       offlineAccess: true,
     });
   }
