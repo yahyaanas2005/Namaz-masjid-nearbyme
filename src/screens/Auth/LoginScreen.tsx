@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { loginStart, loginSuccess, loginFailure } from '@store/slices/authSlice';
 import AuthService from '@services/AuthService';
 
@@ -47,11 +48,9 @@ const LoginScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image
-          source={require('../../assets/logo.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+        <View style={styles.logoContainer}>
+          <Icon name="mosque" size={80} color="#2E7D32" />
+        </View>
         <Text style={styles.title}>PrayerTime Navigator</Text>
         <Text style={styles.subtitle}>
           Find nearby mosques and accurate prayer times
@@ -106,10 +105,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 50,
   },
-  logo: {
+  logoContainer: {
     width: 120,
     height: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 20,
+    backgroundColor: '#E8F5E9',
+    borderRadius: 60,
   },
   title: {
     fontSize: 28,
