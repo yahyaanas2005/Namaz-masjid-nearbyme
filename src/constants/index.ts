@@ -73,7 +73,10 @@ export const STORAGE_KEYS = {
 };
 
 // Configuration
-// TODO: Replace with your actual credentials before running
+// IMPORTANT: Replace these placeholder values before deploying to production
+// For production, consider using react-native-config package for better security
+// Install: npm install react-native-config
+// Then create .env file with your actual credentials
 export const CONFIG = {
   GOOGLE_WEB_CLIENT_ID: 'YOUR_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com',
   FIREBASE_API_KEY: 'YOUR_FIREBASE_API_KEY',

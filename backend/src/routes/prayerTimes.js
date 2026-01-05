@@ -31,7 +31,8 @@ router.post('/report', [
     await report.save();
 
     // Check if prayer time should be validated
-    await validatePrayerTime(mosqueId, prayerName);
+    const io = req.app.get('io');
+    await validatePrayerTime(mosqueId, prayerName, io);
 
     res.status(201).json(report);
   } catch (error) {
@@ -64,7 +65,7 @@ router.get('/:mosqueId/validated', [
 });
 
 // Helper function to validate prayer time
-async function validatePrayerTime(mosqueId, prayerName) {
+async function validatePrayerTime(mosqueId, prayerName, io) {
   const threshold = parseInt(process.env.PRAYER_TIME_VALIDATION_THRESHOLD || '50');
   
   // Get all reports for this prayer
@@ -96,8 +97,7 @@ async function validatePrayerTime(mosqueId, prayerName) {
     mosque.prayerTimes.lastUpdated = new Date();
     await mosque.save();
 
-    // Emit real-time update
-    const io = req.app.get('io');
+    // Emit real-time update if io is available
     if (io) {
       io.to(`mosque:${mosqueId}`).emit('prayerTimeUpdate', {
         prayerName,
